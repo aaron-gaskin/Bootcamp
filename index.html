@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -17,6 +17,9 @@
                 Implement a way to filter through listings using the search bar 
 
               -->
+			  
+			  
+			  
             <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
             <input type="text" class="form-control" placeholder="Search">
           </div>
@@ -33,7 +36,17 @@
                       * populate the rows with the code and name of each listing
                       * include a way to remove individual listings
 
-                --> 
+                -->
+				
+				<!-- 
+					Use ng-repeat to iterate through the list, adding the code and name of every building 
+					in listings to the table
+				-->
+				<tr ng-repeat="place in listings" ng-click="showDetails($index)">
+					<td>{{ place.code }}</td>
+					<td>{{ place.name }}</td>
+				</tr>
+				
             </table>
           </div>
           <!-- 
@@ -41,6 +54,9 @@
               Write an HTML form that adds new listings to the directory 
 
             -->
+			
+			
+			
         </div>
         <div class="col-md-6">
           <div class="jumbotron">
@@ -51,6 +67,17 @@
                    * consider how to use ng-click within the the table to implement this feature
 
              -->
+			 
+			 <!-- use ng-click and $scope.detailedInfo to access the data and display it -->
+			 <p>
+				Code: {{detailedInfo.code}}<br>
+				Name: {{detailedInfo.name}}<br>
+				Coordinates:<br>
+					&nbsp;&nbsp;Latitude: {{detailedInfo.coordinates.latitude}}<br>
+					&nbsp;&nbsp;Longitude: {{detailedInfo.coordinates.longitude}}<br>
+				Address: {{detailedInfo.address}}
+			 </p>
+			 
           </div>
         </div>
       </div>
