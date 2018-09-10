@@ -43,8 +43,14 @@
 					in listings to the table
 				-->
 				<tr ng-repeat="place in listings" ng-click="showDetails($index)">
-					<td>{{ place.code }}</td>
-					<td>{{ place.name }}</td>
+					<td>
+						<!-- Add a button that removes the associated listing -->
+						<button data-ng-click="deleteListing($index)" > - </button>
+						{{ place.code }}
+					</td>
+					<td>
+						{{ place.name }}
+					</td>
 				</tr>
 				
             </table>
@@ -55,8 +61,22 @@
 
             -->
 			
+		  <div>
+			<!-- create a new form to gather new listing info -->
+			<form name="listingForm" ng-submit="addListing()">
+			Building Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="code" ng-model="code" required />
+			<br>
+			Building Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name" ng-model="name" required />
+			<br>
+			Building Latitude: &nbsp;&nbsp;<input type="text" name="lat" ng-model="lat" />
+			<br>
+			Building Longitude: <input type="text" name="longitude" ng-model="longitude" />
+			<br>
+			Building Address: &nbsp;&nbsp;&nbsp;<input type="text" name="address" ng-model="address" />
+			<br>
+			<button ng-disabled="listingForm.$invalid" ng-click="addListing()"> Add New Listing </button>
 			
-			
+		  </div>
         </div>
         <div class="col-md-6">
           <div class="jumbotron">
