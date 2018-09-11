@@ -11,13 +11,17 @@ var fs = require('fs'),
 
 /* Connect to your database */
 
+
+
 /* 
   Instantiate a mongoose model for each listing object in the JSON file, 
   and then save it to your Mongo database 
  */
 
 
+ 
 /* 
   Once you've written + run the script, check out your MongoLab database to ensure that 
   it saved everything correctly. 
  */
+ 
