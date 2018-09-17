@@ -6,23 +6,18 @@
 var fs = require('fs'),
     mongoose = require('mongoose'), 
     Schema = mongoose.Schema, 
+	MongoClient = require('mongodb').MongoClient,
     Listing = require('./ListingSchema.js'), 
     config = require('./config'),
 	
 	data = require('./listings.json');
+	mongoose.Promise = global.Promise;
 	
-/* Connect to your database */
-mongoose.connect(config.db.uri);	//establish connection
-var db = mongoose.connection;		//create var that looks at current connection
-db.on('error', console.error.bind(console, 'connection error:'));	//check that we are,in fact, connected
-db.once('open', function () {
-    console.log("Connected correctly to server");	//Connected!
-});
-
 /* 
   Instantiate a mongoose model for each listing object in the JSON file, 
   and then save it to your Mongo database 
  */
+ 
  var result = [];
  /*	My attempt to add each building into a model and then load that model into the db*/
  Listing.find().remove();	//clear all existing documents
@@ -37,15 +32,15 @@ db.once('open', function () {
 		result.push(temp);
 	}
  }
-  /*//A test via parsing JSON (it works as well)
- var result = [];
- for(var i = 0; i < data.entries.length; i++)
-	 result.push(data.entries[i]);
- */
-db.collection('listings').insert(result, function(err,r) {
-	if(err) throw err;
-	db.close();
-});
+ 
+ /* Connect to the database and add the array of building data to the database */
+ MongoClient.connect(config.db.uri, function(err, db) {
+	if (err) throw err;
+	db.collection('listings').insert(result, function(err,r) {
+		if(err) throw err;
+		db.close();
+	});
+ });
 /*
   Once you've written + run the script, check out your MongoLab database to ensure that 
   it saved everything correctly. 

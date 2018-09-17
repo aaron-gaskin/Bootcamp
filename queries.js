@@ -6,7 +6,7 @@ var fs = require('fs'),
   MongoClient = require('mongodb').MongoClient,
   config = require('./config');
 
-
+mongoose.Promise = global.Promise;
 
 var findLibraryWest = function() {
   /* 
