@@ -23,24 +23,26 @@ db.once('open', function () {
   Instantiate a mongoose model for each listing object in the JSON file, 
   and then save it to your Mongo database 
  */
- 
- /*	My attempt to add each building into a model and then load that model into the db
+ var result = [];
+ /*	My attempt to add each building into a model and then load that model into the db*/
  Listing.find().remove();	//clear all existing documents
  for( var i = 0; i < data.entries.length; i++ ) {
 	 if(data.entries[i].coordinates == undefined) {
-		var temp = new Listing({ name:data.entries[i].name, code:data.entries[i].code});
-		db.listings.save(temp);
-		console.log(temp.name);
+		var temp = new Listing({ code:data.entries[i].code, name:data.entries[i].name });
+		result.push(temp);
 	 } else {
-		var temp = new Listing({ name:data.entries[i].name, code:data.entries[i].code, coordinates:{
+		var temp = new Listing({ code:data.entries[i].code, name:data.entries[i].name, coordinates:{
 			latitude:data.entries[i].coordinates.latitude, longitude:data.entries[i].coordinates.longitude}
 			, address:data.entries[i].address });
-		db.listings.save(temp);
+		result.push(temp);
 	}
  }
+  /*//A test via parsing JSON (it works as well)
+ var result = [];
+ for(var i = 0; i < data.entries.length; i++)
+	 result.push(data.entries[i]);
  */
- 
-db.collection('listings').insert(data, function(err,r) {
+db.collection('listings').insert(result, function(err,r) {
 	if(err) throw err;
 	db.close();
 });
