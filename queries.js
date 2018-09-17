@@ -1,4 +1,24 @@
-/* Fill out these functions using Mongoose queries*/
+/* Fill out these functions using Mongoose queries
+var config = require('./config');
+mongoose.connect(config.db.uri);	//establish connection
+var db = mongoose.connection;		//create var that looks at current connection
+db.on('error', console.error.bind(console, 'connection error:'));	//check that we are,in fact, connected
+db.once('open', function () {
+    console.log("Connected correctly to server");	//Connected!
+});
+*/
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert'),
+  config = require('./config');
+
+var uri = config.db.uri;
+MongoClient.connect(uri, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected successfully to server");
+
+  db.close();
+});
+
 
 var findLibraryWest = function() {
   /* 

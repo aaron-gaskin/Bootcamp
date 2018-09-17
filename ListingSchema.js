@@ -9,8 +9,8 @@ var listingSchema = new Schema({	//write variables and define them e.g. name: St
   name: {type: String, required: true, unique: true},
   code: {type: String, required: true, unique: true},
   coordinates: {
-	  latitude: Number,
-	  longitude: Number
+	  latitude: String,
+	  longitude: String
   },
   address: String
   
