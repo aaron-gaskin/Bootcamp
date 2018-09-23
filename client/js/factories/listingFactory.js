@@ -12,7 +12,7 @@ angular.module('listings', []).factory('Listings', function($http) {
 	   /**TODO
         return result of HTTP delete method
        */
-
+		
     }
   };
 

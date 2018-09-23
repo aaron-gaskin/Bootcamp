@@ -62,7 +62,14 @@ exports.update = function(req, res) {
   /* Save the article */
   var newList = new Listing(req.body);	//create new listing
   
-  var update = {$set:{code:newList.code, name:newList.name, address:newList.address} };	//set new values
+  //check if coordinates need to be updated
+  if(req.body.coordinates == undefined) {
+	var update = {$set:{code:newList.code, name:newList.name, address:newList.address} };	//set new values
+  } else {
+	  var update = {$set:{code:newList.code, name:newList.name, address:newList.address,
+	  coordinates:{latitude:newList.coordinates.latitude, longitude:newList.coordinates.longitude} }};	//set new values
+  }
+  
   MongoClient.connect(config.db.uri, function(err, db) {		//connect to mlab
 		if (err) throw err;
 		// find and update the listing

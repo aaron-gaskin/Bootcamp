@@ -29,12 +29,12 @@
               </tr>
             </table>
           </div>
-          <form novalidate class="simple-form">
+          <form novalidate class="simple-form" name="form">
             <h2>Add New Listing</h2>
-            Code: <input type="text" ng-model="newListing.code" /><br />
-            Name: <input type="text" ng-model="newListing.name" /><br />
-            Address: <input type="text" ng-model="newListing.address" /><br />
-            <button class="btn btn-primary" ng-click="addListing()">Add Listing</button>
+            Code: <input type="text" ng-model="code" required /><br />
+            Name: <input type="text" ng-model="name" required /><br />
+            Address: <input type="text" ng-model="address" /><br />
+            <button ng-disabled="form.$invalid" class="btn btn-primary" ng-click="addListing()">Add Listing</button>
           </form>
         </div>
         <div class="col-md-6">
