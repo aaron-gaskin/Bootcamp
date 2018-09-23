@@ -14,6 +14,8 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 	  *Save the article using the Listings factory. If the object is successfully 
 	  saved redirect back to the list page. Otherwise, display the error
 	 */
+	 
+	 
     };
 
     $scope.deleteListing = function(index) {
@@ -21,6 +23,8 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         Delete the article using the Listings factory. If the removal is successful, 
 		navigate back to 'listing.list'. Otherwise, display the error. 
        */
+	   
+	   
     };
 
     $scope.showDetails = function(index) {
