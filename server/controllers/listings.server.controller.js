@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'), 
     Listing = require('../models/listings.server.model.js'),
 	MongoClient = require('mongodb').MongoClient,
-	config = require('../config/config');
+	config = require('../config/config.js');
 
 	mongoose.Promise = global.Promise;
 /*
