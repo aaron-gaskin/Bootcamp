@@ -28,9 +28,9 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 		temp=$scope.listings[i];
 		if(newEntry.code < temp.code)
 		{
-			Listings.create(newEntry, function(res) { //add new entry
+			Listings.create(newEntry).then(function(res) { //add new entry
 				///reload page here ////
-				$scope.listings.splice(i,0,newEntry);	
+				location.reload();
 			}, function(error) {
 			  console.log('Unable to retrieve listings:', error);
 			});
@@ -47,8 +47,9 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 	if(!check)
 	{
 		//add new entry to db and redirect back to list page
-		Listings.create(newEntry, function(res) {  //add new entry
+		Listings.create(newEntry).then(function(res) {  //add new entry
 			///reload page here ////
+			location.reload();
 		}, function(error) {
 		  console.log('Unable to add listing: ', error);
 		});
@@ -66,10 +67,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 		navigate back to 'listing.list'. Otherwise, display the error. 
        */
 	   //delete entry from db and redirect back to list page
-	   var query = $scope.listings[index];
-			$scope.listings.splice(index,1);
-		Listings.delete(query, function(res) {
+		var remove = $scope.listings[index]._id;
+		Listings.delete(remove).then(function(res){
 			//// reload page here ///
+			location.reload();
 		}, function(error) {
 		  console.log('Unable to delete listing: ', error);
 		});
