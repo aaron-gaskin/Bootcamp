@@ -1,6 +1,6 @@
 var should = require('should'), 
     request = require('supertest'), 
-    express = require('../config/express'), 
+    express = require('../config/express.js'), 
     Listing = require('../models/listings.server.model.js');
 
 /* Global variables */
