@@ -1,6 +1,6 @@
 var config = require('./config.js'), 
     mongoose = require('mongoose'),   
-    express = require('./express');
+    express = require('./express.js');
 
 module.exports.start = function() {
   var app = express.init();
