@@ -61,7 +61,7 @@ exports.update = function(req, res) {
   /* Replace the article's properties with the new properties found in req.body */
   /* Save the article */
   var newList = new Listing(req.body);	//create new listing
-  
+  console.log(req.body);
   //check if coordinates need to be updated
   if(req.body.coordinates == undefined) {
 	var update = {$set:{code:newList.code, name:newList.name, address:newList.address} };	//set new values

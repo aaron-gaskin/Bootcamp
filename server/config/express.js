@@ -1,7 +1,6 @@
 var path = require('path'),  
     express = require('express'), 
     mongoose = require('mongoose'),
-	MongoClient = require('mongodb').MongoClient,
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
@@ -9,8 +8,7 @@ var path = require('path'),
 
 module.exports.init = function() {
   //connect to database
-  MongoClient.connect(config.db.uri);
-  console.log(__dirname);
+  mongoose.connect(config.db.uri);
   
   //initialize app
   var app = express();
@@ -24,7 +22,7 @@ module.exports.init = function() {
   
   /**TODO
   Serve static files */
-  app.use('/',express.static(__dirname+'/../../client'));
+  //app.use('/',express.static(__dirname+'/../../client'));
 
   /**TODO 
   Use the listings router for requests to the api */
@@ -32,9 +30,9 @@ module.exports.init = function() {
 
   /**TODO 
   Go to homepage for all routes not specified */ 
-  app.use('*', function(req, res) {
-    res.redirect('/index.html');
-  });
+  // app.use('/*', function(req, res) {
+    // res.redirect('/index.html');
+  // });
   
   return app;
 };  
